@@ -1658,10 +1658,9 @@ class TimelineContainer(Gtk.Grid, Zoomable, Loggable):
 
     def __pasteClipsCb(self, unused_action, unused_parameter):
         if self.__copiedGroup:
-            save = self.__copiedGroup.copy(True)
             position = self._project.pipeline.getPosition()
-            self.__copiedGroup.paste(position)
-            self.__copiedGroup = save
+            save = self.__copiedGroup.paste(position)
+            self.__copiedGroup = save.copy(True)
             self._project.pipeline.commit_timeline()
 
     def _alignSelectedCb(self, unused_action, unused_parameter):
